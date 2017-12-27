@@ -1,0 +1,35 @@
+Cuando vamos a aprender una tecnología nueva
+el primer obstáculo a superar
+es realizar una instalación correcta
+de lo que vamos a usar.
+
+En el caso de Laravel,
+tenemos muchas formas de instalar
+lo necesario.
+
+Lo bueno es que:
+Una vez que hayamos finalizado la configuración necesaria, 
+podremos crear tantos proyectos de Laravel como necesitemos de forma muy sencilla.
+
+Primero veamos, ¿qué es lo que necesitamos?
+Para ejecutar un proyecto PHP en general, necesitamos
+- Un servidor web local -> Apache
+- Un motor de bases de datos -> MySQL 
+- Un gestor de bases de datos -> PhpMyAdmin
+
+Para crear un proyecto de Laravel nuevo, necesitamos
+- Gestor de paquetes de PHP -> Composer
+
+¿Cómo instalamos todo esto?
+Existen muchas formas. Veamos la más breve.
+- WAMP Server (Windows, Apache, MySQL, PHP)
+- XAMPP
+
+- Composer
+
+Una vez que tenemos lo necesario para crear un proyecto de Laravel nuevo, 
+procedemos a crearlo con solo ejecutar un comando.
+
+Para usar Apache, debemos configurar unos VirtualHosts.
+De momento evitaremos la fatiga ejecutando:
+php artisan serv => Levantar un servidor web usando PHP
