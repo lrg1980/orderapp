@@ -91,39 +91,42 @@
 								<p class="text-divider">Or Be Classical</p>
 								<div class="content">
 
-									<div class="input-group">
+									<!-- <div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">face</i>
 										</span>
 										<input type="text" class="form-control" placeholder="First Name...">
-									</div>
+									</div> -->
 
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">email</i>
 										</span>
-										<input type="text" class="form-control" placeholder="Email...">
+										<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus  placeholder="Email...">
 									</div>
 
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">lock_outline</i>
 										</span>
-										<input type="password" placeholder="Password..." class="form-control" />
+										<input id="password" type="password" class="form-control" name="password" required placeholder="Password..."  />
 									</div>
 
-									<!-- If you want to add a checkbox to this form, uncomment this code
+									<!-- If you want to add a checkbox to this form, uncomment this code-->
 
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="optionsCheckboxes" checked>
 											Subscribe to newsletter
 										</label>
-									</div> -->
+									</div>
 								</div>
 								<div class="footer text-center">
 									<a href="#pablo" class="btn btn-simple btn-primary btn-lg">Get Started</a>
 								</div>
+								<!-- <a class="btn btn-link" href="{{ route('password.request') }}">
+								Forgot Your Password?
+           						</a> -->
 							</form>
 						</div>
 					</div>
