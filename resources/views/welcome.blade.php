@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('body-class', 'landing-page')
-@section('title', 'Bienvenido' . ' ' . '|'.' ')
+@section('title', 'Bienvenido a  ' . config('app.name'))
 
 @section('styles')
 <style>
@@ -9,17 +9,57 @@
         margin-bottom: 4em;
     }
 
-    .row {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
-  flex-wrap: wrap;
-}
-.row > [class*='col-'] {
-  display: flex;
-  flex-direction: column;
-}
+    .team .row {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display:         flex;
+        flex-wrap: wrap;
+    }
+    .team .row > [class*='col-'] {
+          display: flex;
+          flex-direction: column;
+    }
+// Actualización de estilos de TypeAhead
+    .tt-query {
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+         -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+              box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .tt-hint {
+      color: #999
+    }
+
+    .tt-menu {    /* used to be tt-dropdown-menu in older versions */
+      width: 222px;
+      margin-top: 4px;
+      padding: 4px 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      -webkit-border-radius: 4px;
+         -moz-border-radius: 4px;
+              border-radius: 4px;
+      -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+         -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+              box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    }
+
+    .tt-suggestion {
+      padding: 3px 20px;
+      line-height: 26px;
+    }
+
+    .tt-suggestion.tt-cursor,.tt-suggestion:hover {
+      color: #fff;
+      background-color: #0097cf;
+
+    }
+
+    .tt-suggestion p {
+      margin: 0;
+    }
 </style>
 @endsection
 
@@ -81,8 +121,42 @@
                 </div>
             </div>
         </div>
-
+        <!--Formulario Search-->
+            <div class="section text-center">
+                <h2 class="title">
+                    <form action="{{ url('/search') }}" class="form-inline" method="get">
+                        <input type="text" placeholder="¿Qué producto buscas?" class="form-control" name="query" id="search">
+                        <button type="submit" class="btn btn-primary btn-just-icon"><i class="material-icons">search</i> Buscar</button>
+                    </form>
+                </h2>
+            </div>
+        <div>
+            
+        </div>
         <div class="section text-center">
+            <h2 class="title">Nuestras Categorias</h2>
+
+            <div class="team">
+                <div class="row">
+                    @foreach ($categories as $category)
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="team-player">
+                            <img src="{{$category->featured_image_url }}" alt="Imagen de la categoría {{$category->name }}" class="img-raised img-circle">
+                            <h4 class="title">
+                                <a href="{{url('/categories/'.$category->id) }}">{{ $category->name }}</a> <br />
+                                <small class="text-muted">
+                                    {{ $category->category_name}}</small>
+                            </h4>
+                            <p class="description">{{ $category->description}} </p>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+        </div>
+
+       {{-- <div class="section text-center">
             <h2 class="title">Productos disponibles</h2>
 
             <div class="team">
@@ -94,7 +168,7 @@
                             <h4 class="title">
                                 <a href="{{url('/products/'.$product->id) }}">{{ $product->name }}</a> <br />
                                 <small class="text-muted">
-                                    {{ $product->category->name}}</small>
+                                    {{ $product->category_name}}</small>
                             </h4>
                             <p class="description">{{ $product->description}} </p>
                         </div>
@@ -107,7 +181,7 @@
 
             </div>
 
-        </div>
+        </div> --}}
 
 
         <div class="section landing-section">
@@ -152,38 +226,32 @@
 
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <nav class="pull-left">
-            <ul>
-                <li>
-                    <a href="http://www.creative-tim.com">
-                        Creative Tim
-                    </a>
-                </li>
-                <li>
-                    <a href="http://presentation.creative-tim.com">
-                       About Us
-                    </a>
-                </li>
-                <li>
-                    <a href="http://blog.creative-tim.com">
-                       Blog
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.creative-tim.com/license">
-                        Licenses
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="copyright pull-right">
-            &copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative Tim
-        </div>
-    </div>
-</footer>
+@include('includes.footer')
 
-</div>
+@endsection
 
+@section('scripts')
+    <script src="{{ asset('/js/typeahead.bundle.min.js') }}"></script>
+    <script>
+        $(function() {
+            // Iniciar el motor de búsqueda
+            // constructs the suggestion engine
+                var products = new Bloodhound ({
+                  datumTokenizer: Bloodhound.tokenizers.whitespace,
+                  queryTokenizer: Bloodhound.tokenizers.whitespace,
+                  // `products` is an array of product names 
+                  prefetch: '{{ url('/products/json') }}'
+                });
+
+            // inicializar typeahead sobre nuestro input de búsqueda
+                $('#search').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLenght: 1
+                }, {
+                    name: 'products',
+                    source: products
+                });
+            });
+    </script>
 @endsection

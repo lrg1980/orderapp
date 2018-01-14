@@ -40,11 +40,25 @@
                         </div>
                     </div>
                 </div>
-            
-                <div class="form-group label-floating">
-                    <label class="control-label">Descripción corta del producto</label>
-                    <input type="text" name="description" class="form-control" value=" {{ old('description') }}">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group label-floating">
+                        <label class="control-label">Descripción corta del producto</label>
+                        <input type="text" name="description" class="form-control" value=" {{ old('description') }}">
+                    </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="form-group label-floating">
+                        <label class="control-label">Categoría del producto</label>
+                        <select class="form-control"  name="category_id">
+                            <option value="0"> Sin Categoría </option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
             
             
                 <div class="form-group label-floating">
@@ -53,6 +67,7 @@
                 </div>
 
                 <button class="btn btn-primary">Agregar producto</button>
+                <a href="{{ url('/admin/products') }}" class="btn btn-default">Cancelar</a>
                 
             </form>
 

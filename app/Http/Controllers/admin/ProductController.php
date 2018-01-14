@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Product;
-use App\ProductImage;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -18,7 +18,8 @@ class ProductController extends Controller
     
     public function create()
     {
-    	return view('admin.products.create'); // formulario de registro
+        $categories = Category::orderBy('name')->get();
+    	return view('admin.products.create')->with(compact('categories')); // formulario de registro
     }
     public function store(Request $request)
     {
@@ -49,6 +50,7 @@ class ProductController extends Controller
     	$product->description = $request->input('description');
     	$product->price = $request->input('price');
     	$product->long_description = $request->input('long_description');
+        $product->category_id = $request->category_id == 0 ? null : $request->category_id;// Se establece la relación en la BD
     	$product->save(); // guardar en BD
 
     	return redirect('/admin/products');
@@ -56,9 +58,10 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $categories = Category::orderBy('name')->get();
     	//return "Mostrar aqui el form de edición para el producto en el id $id";
     	$product = Product::find($id);
-    	return view('admin.products.edit')->with(compact('product')); // formulario de edición
+    	return view('admin.products.edit')->with(compact('product', 'categories')); // formulario de edición
     }
     public function update(Request $request, $id) // Metodo actualizar
     {
@@ -89,6 +92,7 @@ class ProductController extends Controller
     	$product->description = $request->input('description');
     	$product->price = $request->input('price');
     	$product->long_description = $request->input('long_description');
+        $product->category_id = $request->category_id == 0 ? null : $request->category_id;
     	$product->save(); // Editar ID en BD
 
     	return redirect('/admin/products');

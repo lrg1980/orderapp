@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('body-class', 'products-page')
-@section('title', 'Escritorio'. '|'.' ')
+@section('title', 'Escritorio '. '|'.' ')
 
 @section('content')
 <div class="header header-filter" style="background-image: url('https://images.unsplash.com/photo-1423655156442-ccc11daa4e99?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1450');">
@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-heading">
-                        <p>Tu carrito de compras presenta {{ auth()->user()->cart->details->count() }} productos y el subtotal es {{ auth()->user()->cart->price }}</p>
+                        <p>Tu carrito de compras presenta {{ auth()->user()->cart->details->count() }} productos y <strong>el importe a pagar es:</strong> {{ auth()->user()->cart->total}}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -87,6 +87,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    
                     <div class="text-center">
                        <form method="post" action="{{ url('/order') }}">
                         {{ csrf_field() }}    

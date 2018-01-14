@@ -33,14 +33,14 @@
                                 <td class="text-center">{{ $product->id}}</td>
                                 <td class="text-center">{{ $product->name}}</td>
                                 <td class="text-center">{{ $product->description}}</td>
-                                <td class="text-center">{{ $product->category ? $product->category->name : 'Sin Categoría'}}</td>
+                                <td class="text-center">{{ $product->category_name}}</td> <!--Ternario por calculado -> ? $product->category->name : 'Sin Categoría'-->
                                 <td class="text-center">$ {{ $product->price}}</td>
                                 <td class="td-actions">
                                     <form action="{{ url('/admin/products/'.$product->id.'/delete')}}" method="post">
                                         {{ csrf_field() }}
                                         {{-- {{ method_field('DELETE')}} En caso de utilizar Delete en rutas--}}
-                                        <a href="#" rel="tooltip" title="Ver producto" class="btn btn-info btn-simple btn-xs">
-                                        <i class="material-icons md-36">visibility</i>
+                                        <a href="{{ url('/products/'.$product->id) }}" target="_blank" rel="tooltip" title="Ver producto" class="btn btn-info btn-simple btn-xs">
+                                        <i class="material-icons">visibility</i>
                                         </a>
                                         <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar producto" class="btn btn-success btn-simple btn-xs"><i class="material-icons">mode_edit</i>
 
