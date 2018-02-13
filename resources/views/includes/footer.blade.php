@@ -3,25 +3,25 @@
         <nav class="pull-left">
             <ul>
                 <li>
-                    <a href="http://www.creative-tim.com">
-                        Creative Tim
+                    <a href="https://www.binweb.net">
+                        Binweb Online Solutions
                     </a>
                 </li>
                 <li>
-                    <a href="http://presentation.creative-tim.com">
-                       About Us
+                    <a href="https://www.binweb.net">
+                       Sobre nosotros
                     </a>
                 </li>
                 <li>
-                    <a href="http://blog.creative-tim.com">
-                       Blog
+                    <a href="https://www.binweb.net">
+                       Novedades
                     </a>
                 </li>
-                <li>
-                    <a href="http://www.creative-tim.com/license">
+                <!--<li>
+                    <a href="https://www.binweb.net">
                         Licenses
                     </a>
-                </li>
+                </li>-->
             </ul>
         </nav>
         <div class="copyright pull-right">

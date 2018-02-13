@@ -89,20 +89,20 @@
                     @endguest
                     <!--Iconos sociales Menu-->
                     <li>
-                        <a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                        <a href="https://twitter.com/" target="_blank" class="btn btn-simple btn-white btn-just-icon">
                             <i class="fa fa-twitter"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                        <a href="https://www.facebook.com" target="_blank" class="btn btn-simple btn-white btn-just-icon">
                             <i class="fa fa-facebook-square"></i>
                         </a>
                     </li>
-                    <li>
-                        <a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">
+                   <!-- <li>
+                        <a href="https://www.instagram.com/" target="_blank" class="btn btn-simple btn-white btn-just-icon">
                             <i class="fa fa-instagram"></i>
                         </a>
-                    </li>
+                    </li>-->
                     <!--/Iconos sociales Menu-->
                 </ul>
             </div>
